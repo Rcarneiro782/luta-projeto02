@@ -2,4 +2,9 @@ const char = createKnight('Rafa');
 const monster = createLittleMonster();
 
 
-console.log(char.life);
+stage.start(
+    char,
+    monster,
+    document.querySelector('#char'),
+    document.querySelector('#monster')
+);
