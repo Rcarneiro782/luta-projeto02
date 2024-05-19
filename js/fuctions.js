@@ -83,7 +83,28 @@ const stage = {
     },
 
     doAttack(attacking, attacked) {
-        console.log(`${attacking.name} atacando ${attacked.name}`);
+        if(attacking.life <= 0 || attacked.life <= 0){
+            console.log('Game over');
+            return;
+        }
+
+        const attackFactor = (Math.random() * 2).toFixed(2);
+        const defenseFactor = (Math.random() * 2).toFixed(2);
+
+        const actualAttack = attacking.attack * attackFactor;
+        const actualDefense = attacked.defense * defenseFactor;
+
+        if(actualAttack > actualDefense){
+            attacked.life -= actualAttack;
+            attacked.life = attacked.life < 0 ? 0: attacked.life;
+            console.log(`${attacking.name} Causou ${actualAttack.toFixed(2)} danos em ${attacked.name}`)
+
+        }else{
+            console.log(`${attacked.name} Conseguiu defender....`)
+        }
+
+        this.update();
+
     }
 };
 
